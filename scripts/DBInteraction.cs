@@ -36,23 +36,27 @@ public class DBInteraction {
         return post.text;
     }
 
-    public bool AddUser(string UserName, string Password)
+    public int AddUser(string UserName, string Password)
     {
         //Get an array of all user names in the database
         string[] names = GetAttributeOfAllUsers("Name").Split(' ');
 
+        int userID;
+
         // check if given UserName is already in use
         if(names != null)
         {
+            userID = names.Length; // userID from the new user
+
             foreach(string s in names)
             {
                 if (s.Equals(UserName))
-                    return false;
+                    return -1;
             }
         }
         else
         {
-            return false;
+            return -1;
         }
 
 
@@ -60,7 +64,7 @@ public class DBInteraction {
         string hash = CreateMD5(UserName + Password + secretKey);
 
         //create url to use AddUser.php on the webpage
-        string post_url = AddUserURL + "Name= " + WWW.EscapeURL(UserName) + "&Password=" + Password + startingEquipment + "&hash=" + hash;
+        string post_url = AddUserURL + "Name=" + WWW.EscapeURL(UserName) + "&Password=" + Password + startingEquipment + "&hash=" + hash;
         Debug.Log(post_url);
         WWW post = new WWW(post_url);
 
@@ -73,10 +77,10 @@ public class DBInteraction {
         if (post.error != null)
         {
             Debug.Log("There was an error posting the user data: " + post.error);
-            return false;
+            return -1;
         }
 
-        return true;
+        return userID;
     }
 
     public void updateUser(int userID, string userName, string password, int money, int levelProgress, int hearts, int bombs, int shields)

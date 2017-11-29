@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class middle : MonoBehaviour {
+public class middle : MonoBehaviour
+{
 
     public tom player;
 
     public gamescore _gamescore;
- 
+
     public void Press()
     {
-       if (player.AImiddle_is_in==true)
+        if (player.AImiddle_is_in == true)
         {
             WrongPress();
             Destroy(player.enemyMiddle);
@@ -38,7 +39,7 @@ public class middle : MonoBehaviour {
 
     public void PauseDisable()
     {
-       this.GetComponent<Button>().interactable = false;
+        this.GetComponent<Button>().interactable = false;
     }
 
     public void Resume()

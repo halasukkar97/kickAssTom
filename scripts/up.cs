@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class up : MonoBehaviour {
+public class up : MonoBehaviour
+{
 
     public tom player;
     public gamescore _gamescore;
 
-    
+
 
     public void Press()
     {
@@ -32,7 +33,7 @@ public class up : MonoBehaviour {
             _gamescore.ResetBonusPoints();
 
         }
-        
+
     }
 
     public void PauseDisable()

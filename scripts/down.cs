@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class down : MonoBehaviour {
+public class down : MonoBehaviour
+{
 
     public tom player;
     public gamescore _gamescore;

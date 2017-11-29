@@ -9,13 +9,13 @@ public class StartScreen : MonoBehaviour{
 	public void LogIn()
     {
         //load LogIn screen
-        m_gamestate.LoadScene(1, false);
+        m_gamestate.LoadScene(5, false);
     }
 
     public void NewUser()
     {
         //load New User screen
-        m_gamestate.LoadScene(2, false);
+        m_gamestate.LoadScene(6, false);
     }
 
     public void EndGame()

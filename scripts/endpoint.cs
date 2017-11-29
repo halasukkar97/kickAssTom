@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class endpoint : MonoBehaviour {
+public class endpoint : MonoBehaviour
+{
 
     void OnTriggerEnter(Collider col)
     {
-       
+
         Debug.Log("OnTriggerEnter");
 
         switch (col.tag)

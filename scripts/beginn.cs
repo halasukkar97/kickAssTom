@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class beginn : MonoBehaviour {
+public class beginn : MonoBehaviour
+{
    
+
     float delay;
     public GameObject[] aiTom;
     private Transform _target;
@@ -33,7 +35,7 @@ public class beginn : MonoBehaviour {
     private void SpawnNewtom()
     {
         randomai = Random.Range(0, 3);
-        GameObject newAi = Instantiate(aiTom[randomai], this.transform.position,this.transform.rotation);  
+        GameObject newAi = Instantiate(aiTom[randomai], this.transform.position, this.transform.rotation);
         newAi.GetComponent<AI>().Launch(_target);
     }
 

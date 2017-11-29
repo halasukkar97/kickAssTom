@@ -28,7 +28,7 @@ public class LogIn : MonoBehaviour {
             textLabel.text = "LogIn successfull";
 
             //load main menu
-            //...
+            m_gamestate.LoadScene(1,false);
         }
         else
         {

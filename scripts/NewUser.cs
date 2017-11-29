@@ -25,7 +25,7 @@ public class NewUser : MonoBehaviour {
             textLabel.text = "Created new user";
 
             //load main menu
-            //...
+            m_gamestate.LoadScene(1, false);
         }
         else
         {

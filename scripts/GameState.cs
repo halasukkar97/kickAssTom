@@ -65,6 +65,8 @@ public class GameState
             }
         }
 
+        Debug.Log(m_userID);
+
         if(Password.Equals(m_password))
         {
             string[] userData = m_db.GetUserData(m_userID).Split('\t');
@@ -93,8 +95,22 @@ public class GameState
 
     public bool NewUser(string Name, string Password)
     {
-        if (m_db.AddUser(Name, Password) == false)
-            return false;
+        m_userID = m_db.AddUser(Name, Password);
+
+        if (m_userID == -1)
+        {
+            m_userID = 0; // reset m_userID
+            return false; // Adding a user failed
+        }
+
+        m_userName = Name;
+        m_password = Password;
+        m_money = 0;
+        m_levelProgress = 0;
+        m_hearts = 3;
+        m_bombs = 0;
+        m_shields = 0;
+        
 
         return true;
     }
@@ -102,5 +118,45 @@ public class GameState
     public string GetAttribute(string attribute)
     {
         return m_db.GetAttributeOfAllUsers(attribute);
+    }
+
+    public int GetUserID()
+    {
+        return m_userID;
+    }
+
+    public int GetMoney()
+    {
+        return m_money;
+    }
+
+    public void AddMoney(int gold)
+    {
+        m_money += gold;
+    }
+    public int GetLevelProgress()
+    {
+        return m_levelProgress;
+    }
+    public int GetHearts()
+    {
+        return m_hearts;
+    }
+    public int GetBombs()
+    {
+        return m_bombs;
+    }
+    public int GetShields()
+    {
+        return m_shields;
+    }
+    public string GetUserName()
+    {
+        return m_userName;
+    }
+
+    public string GetPassword()
+    {
+        return m_password;
     }
 }
