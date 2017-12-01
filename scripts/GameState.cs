@@ -8,7 +8,7 @@ public class GameState
 
     private DBInteraction m_db = new DBInteraction();
 
-    private static int m_userID, m_money, m_levelProgress, m_hearts, m_bombs, m_shields;
+    private static int m_userID, m_money, m_levelProgress, m_hearts, m_bombs, m_shields, m_potions;
     private static string m_userName, m_password;
 
     /// <summary>
@@ -20,7 +20,7 @@ public class GameState
     public void LoadScene(int SceneIndex, bool UpdateUser)
     {
         if (UpdateUser == true)
-            m_db.updateUser(m_userID, m_userName, m_password, m_money, m_levelProgress, m_hearts, m_bombs, m_shields);
+            m_db.updateUser(m_userID, m_userName, m_password, m_money, m_levelProgress, m_hearts, m_bombs, m_shields, m_potions);
 
         SceneManager.LoadScene(SceneIndex);
     }
@@ -80,6 +80,7 @@ public class GameState
             m_hearts = System.Int32.Parse(userData[5]);
             m_bombs = System.Int32.Parse(userData[6]);
             m_shields = System.Int32.Parse(userData[7]);
+            m_potions = System.Int32.Parse(userData[8]);
 
             Debug.Log("Password correct");
         }
@@ -91,6 +92,41 @@ public class GameState
 
         return true;
             
+    }
+
+    public string GetSingleUserScore(int stage)
+    {
+        string s = m_db.GetSingleUserScore(stage, m_userID);
+
+        if (s != null)
+            return s;
+        else
+            return "The single user score could not be recieved from the database!";
+    }
+
+    /// <summary>
+    /// Returns string of the users with the best score on the given stage.
+    /// The number of listed users is limited by amount.
+    /// </summary>
+    /// <param name="Stage"></param>
+    /// <param name="Amount"></param>
+    /// <returns></returns>
+    public string GetBestUserScores(int Stage, int Amount)
+    {
+        string s = m_db.GetBestUserScores(Stage, Amount);
+        if (s != null)
+            return s;
+        else
+            return "The best user scores could not be recieved from the database!";
+    }
+
+    public string GetBestUserNames(int Stage, int Amount)
+    {
+        string s = m_db.GetBestUserNames(Stage, Amount);
+        if (s != null)
+            return s;
+        else
+            return "The names of the best users could not be recieved!";
     }
 
     public bool NewUser(string Name, string Password)
@@ -110,6 +146,7 @@ public class GameState
         m_hearts = 3;
         m_bombs = 0;
         m_shields = 0;
+        m_potions = 0;
         
 
         return true;
@@ -117,46 +154,36 @@ public class GameState
 
     public string GetAttribute(string attribute)
     {
-        return m_db.GetAttributeOfAllUsers(attribute);
+        string s =  m_db.GetAttributeOfAllUsers(attribute);
+        if (s != null)
+            return s;
+        else
+            return "The attribute of all users could not be recieved!";
     }
 
-    public int GetUserID()
-    {
-        return m_userID;
-    }
+    //_____________________________________________________GETTER FUNCTIONS
+    public int GetUserID() { return m_userID; }
 
-    public int GetMoney()
-    {
-        return m_money;
-    }
+    public int GetMoney() { return m_money; }
+    public int GetLevelProgress() { return m_levelProgress; }
+    public int GetHearts(){return m_hearts;}
+    public int GetBombs(){return m_bombs;}
+    public int GetShields(){return m_shields;}
+    public int GetPotions() { return m_potions; }
+    public string GetUserName(){return m_userName;}
+    public string GetPassword(){return m_password;}
 
-    public void AddMoney(int gold)
-    {
-        m_money += gold;
-    }
-    public int GetLevelProgress()
-    {
-        return m_levelProgress;
-    }
-    public int GetHearts()
-    {
-        return m_hearts;
-    }
-    public int GetBombs()
-    {
-        return m_bombs;
-    }
-    public int GetShields()
-    {
-        return m_shields;
-    }
-    public string GetUserName()
-    {
-        return m_userName;
-    }
+    //_____________________________________________________SETTER FUNCTIONS
 
-    public string GetPassword()
-    {
-        return m_password;
-    }
+    public void SetUserUD(uint value) { m_userID = (int)value; }
+    public void SetUserName(string name) { m_userName = name; }
+    public void AddMoney(int amount) { m_money += amount; }
+    public void SetLevelProgress(uint value) { m_levelProgress = (int)value; }
+    public void AddHearts(int amount) { m_hearts += amount; }
+    public void AddBombs(int amount) { m_bombs += amount; }
+    public void AddShields(int amount) { m_shields += amount; }
+    public void AddPotions(int amount) { m_potions += amount; }
+    public void SetPassword(string password) { m_password = password; }
+
+
 }
