@@ -17,7 +17,7 @@
 	
 	if($real_hash == $hash)
 	{
-		$query = "insert into Users values (NULL, '$Name', '$PW', '$Money', '$LevelProgress', '$Hearts', '$Bombs', '$Shields');";
+		$query = "insert into Users values (NULL, '$Name', '$PW', '$Money', '$LevelProgress', '$Hearts', '$Bombs', '$Shields', '$Potions');";
 		$result = mysqli_query($db, $query) or die('Query fielded; ' .mysqli_error($db));
 	}
 	else

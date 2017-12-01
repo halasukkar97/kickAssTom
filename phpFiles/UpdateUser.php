@@ -10,6 +10,7 @@
 	$Hearts = mysqli_real_escape_string($db, $_GET['Hearts']);
 	$Bombs= mysqli_real_escape_string($db, $_GET['Bombs']);
 	$Shields = mysqli_real_escape_string($db, $_GET['Shields']);
+	$Potions = mysqli_real_escape_string($db, $_GET['Potions']);
 	$hash = $_GET['hash'];
 	
 	$secretKey = "mySecretKey";
@@ -18,7 +19,7 @@
 	
 	if($real_hash == $hash)
 	{
-		$query = "update Users set Money = '$Money', LevelProgress = '$LevelProgress', Hearts = '$Hearts', Bombs = '$Bombs', Shields = '$Shields' where UserID = '$UserID';";
+		$query = "update Users set Money = '$Money', LevelProgress = '$LevelProgress', Hearts = '$Hearts', Bombs = '$Bombs', Shields = '$Shields', Potions = '$Potions' where UserID = '$UserID';";
 		$result = mysqli_query($db, $query) or die('Query fielded; ' .mysqli_error($db));
 	}
 	else
