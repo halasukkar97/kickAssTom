@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class StartScreen : MonoBehaviour{
 
-    GameState m_gamestate = new GameState();
+    GameManagement m_GameManagement = new GameManagement();
+    private BannerAdvertisement m_BannerAdvertisement;
 
-	public void LogIn()
+    public void LogIn()
     {
         //load LogIn screen
-        m_gamestate.LoadScene(5, false);
+        m_GameManagement.LoadScene(1, false);
     }
 
     public void NewUser()
     {
         //load New User screen
-        m_gamestate.LoadScene(6, false);
+        m_GameManagement.LoadScene(2, false);
     }
 
     public void EndGame()

@@ -5,33 +5,33 @@ using UnityEngine.UI;
 
 public class NewUser : MonoBehaviour {
 
-    private InputField userName;
-    private InputField password;
+    private InputField m_UserName;
+    private InputField m_Password;
 
-    Text textLabel;
+    Text m_TextLabel;
 
-    private GameState m_gamestate = new GameState();
+    private GameManagement m_GameManagement = new GameManagement();
 
 
     public void OnButtonClick()
     {
-        userName = GameObject.Find("UserName").GetComponent<InputField>();
-        password = GameObject.Find("Password").GetComponent<InputField>();
+        m_UserName = GameObject.Find("UserName").GetComponent<InputField>();
+        m_Password = GameObject.Find("Password").GetComponent<InputField>();
 
-        textLabel = GameObject.Find("Text").GetComponent<Text>();
+        m_TextLabel = GameObject.Find("Text").GetComponent<Text>();
 
-        if(m_gamestate.NewUser(userName.text, password.text) == true)
+        if(m_GameManagement.NewUser(m_UserName.text, m_Password.text) == true)
         {
-            textLabel.text = "Created new user";
+            m_TextLabel.text = "Created new user";
 
             //load main menu
-            m_gamestate.LoadScene(1, false);
+            m_GameManagement.LoadScene(3, false);
         }
         else
         {
-            textLabel.text = "Creating new user failed";
-            userName.text = "";
-            password.text = "";
+            m_TextLabel.text = "Creating new user failed";
+            m_UserName.text = "";
+            m_Password.text = "";
         }
 
     }

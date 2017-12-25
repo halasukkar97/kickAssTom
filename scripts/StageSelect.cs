@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class StageSelect : MonoBehaviour {
 
-    private GameState m_gamestate = new GameState();
-    private AddMob _addmob;
-    private MainMenu _mainMenu;
+    private GameManagement m_GameManagement = new GameManagement();
+    private BannerAdvertisement m_BannerAdvertisement;
+    private MainMenu m_MainMenu;
 
     public void Start()
     {
-        _addmob = new AddMob();
-        _mainMenu = new MainMenu();
+        m_BannerAdvertisement = new BannerAdvertisement();
+        m_BannerAdvertisement.ShowBanner();
+        m_MainMenu = new MainMenu();
     }
 
     public enum ButtonName
@@ -21,47 +22,53 @@ public class StageSelect : MonoBehaviour {
         stage3,
         stage4,
         stage5,
-        instructions
+        instructions,
+        BackToMainMenu
     }
 
-    public ButtonName btnName;
+    public ButtonName m_ButtonName;
 
 	public void OnClick()
     {
-        switch(btnName)
+        switch(m_ButtonName)
         {
             case ButtonName.stage1:
-                _addmob.RemoveBanner();
-                _mainMenu.SetIndex(1);
-                m_gamestate.LoadScene(2, false);
+                m_BannerAdvertisement.RemoveBanner();
+                m_MainMenu.SetIndex(1);
+                m_GameManagement.LoadScene(6, false);
 
                 break;
             case ButtonName.stage2:
-                _addmob.RemoveBanner();
-                _mainMenu.SetIndex(2);
-                m_gamestate.LoadScene(9, false);
+                m_BannerAdvertisement.RemoveBanner();
+                m_MainMenu.SetIndex(2);
+                m_GameManagement.LoadScene(7, false);
                 
                 break;
             case ButtonName.stage3:
-                _addmob.RemoveBanner();
-                _mainMenu.SetIndex(3);
-                m_gamestate.LoadScene(3, false);
+                m_BannerAdvertisement.RemoveBanner();
+                m_MainMenu.SetIndex(3);
+                m_GameManagement.LoadScene(8, false);
 
                 break;
             case ButtonName.stage4:
-                _addmob.RemoveBanner();
-                _mainMenu.SetIndex(4);
-                m_gamestate.LoadScene(10, false);
+                m_BannerAdvertisement.RemoveBanner();
+                m_MainMenu.SetIndex(4);
+                m_GameManagement.LoadScene(9, false);
 
                 break;
             case ButtonName.stage5:
-                _addmob.RemoveBanner();
-                _mainMenu.SetIndex(5);
-                m_gamestate.LoadScene(11, false);
+                m_BannerAdvertisement.RemoveBanner();
+                m_MainMenu.SetIndex(5);
+                m_GameManagement.LoadScene(10, false);
 
                 break;
             case ButtonName.instructions:
-                m_gamestate.LoadScene(8, false);
+                m_BannerAdvertisement.ShowBanner();
+                m_GameManagement.LoadScene(5, false);
+                break;
+            case ButtonName.BackToMainMenu:
+                m_BannerAdvertisement.ShowBanner();
+                m_GameManagement.LoadScene(3, false);
                 break;
         }
     }

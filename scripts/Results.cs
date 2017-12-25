@@ -4,21 +4,22 @@ using UnityEngine.UI;
 using UnityEngine;
 
 public class Results : MonoBehaviour {
-    private GameState m_gamestate = new GameState();
-    public Text Message;
+    private GameManagement m_GameManagement = new GameManagement();
+    public Text m_ResultText;
 
 
     // Use this for initialization
     void Start () {
 
-        if (gamewatch.lost == true)
+        //if the user loses show him this text
+        if (InGameTimer.LOST == true)
         {
-            Message.text = "You Lost The Round but You can Give it Another Try";
-            gamewatch.lost = false;
+            m_ResultText.text = "You Lost The Round but You can Give it Another Try";
+            InGameTimer.LOST = false; //set the losing bool to false
         }
-        else
+        else//if not show him this text
         {
-            Message.text = "you won , you have now " + m_gamestate.GetMoney().ToString() + " Gold in the Bank, want to try one more time ? ";
+            m_ResultText.text = "you won , you have now " + m_GameManagement.GetMoney().ToString() + " Gold in the Bank, want to try one more time ? ";
         }
     }
 	

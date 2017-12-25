@@ -7,34 +7,34 @@ using System.Text;
 
 public class LogIn : MonoBehaviour {
 
-    private InputField userName;
-    private InputField password;
+    private InputField m_UserName;
+    private InputField m_Password;
 
-    Text textLabel;
+    Text m_TextLabel;
 
-    private GameState m_gamestate = new GameState();
+    private GameManagement m_GameManagement = new GameManagement();
 
     public void OnButtonClick()
     {
 
-        userName = GameObject.Find("UserName").GetComponent<InputField>();
-        password = GameObject.Find("Password").GetComponent<InputField>();
+        m_UserName = GameObject.Find("UserName").GetComponent<InputField>();
+        m_Password = GameObject.Find("Password").GetComponent<InputField>();
 
-        textLabel = GameObject.Find("Text").GetComponent<Text>();
+        m_TextLabel = GameObject.Find("Text").GetComponent<Text>();
 
 
-        if (m_gamestate.LoadUserData(userName.text, password.text) == true)
+        if (m_GameManagement.LoadUserData(m_UserName.text, m_Password.text) == true)
         {
-            textLabel.text = "LogIn successfull";
+            m_TextLabel.text = "LogIn successfull";
 
             //load main menu
-            m_gamestate.LoadScene(1,false);
+            m_GameManagement.LoadScene(3,false);
         }
         else
         {
-            textLabel.text = "LogIn failed";
-            userName.text = "";
-            password.text = "";
+            m_TextLabel.text = "LogIn failed";
+            m_UserName.text = "";
+            m_Password.text = "";
         }
         
 
